@@ -3,7 +3,8 @@ import click
 from commands import (
     query,
     list_tables,
-    login,
+    _login,
+    uploadimages,
     # update,
     # put,
 )
@@ -17,7 +18,8 @@ def cli():
 # Register commands
 cli.add_command(query)
 cli.add_command(list_tables)
-cli.add_command(login)
+cli.add_command(_login)
+cli.add_command(uploadimages)
 # cli.add_command(update)
 # cli.add_command(put)
 

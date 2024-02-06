@@ -4,10 +4,7 @@ from jprint import jprint
 import click
 
 
-@click.command()
-def login() -> str:
-    """Login to Cognito"""
-
+def login():
     APPSYNC_API_URL = (
         "https://2lw75t7ozjernbgedxz3kx3xdy.appsync-api.us-east-1.amazonaws.com/graphql"
     )
@@ -25,6 +22,19 @@ def login() -> str:
     )
 
     id_token = response["AuthenticationResult"]["IdToken"]
+
+    return id_token
+
+
+@click.command(name="login")
+def _login() -> str:
+    """Login to Cognito"""
+
+    id_token = login()
+    print("id_token: ", id_token)
+    print("you have veen logged into Cognito")
+
+    return id_token
 
     print("you have veen logged into Cognito")
     print("you session token is: " + id_token)
