@@ -1,7 +1,11 @@
 import click
+import fnmatch
 import boto3
 from botocore.exceptions import ClientError
-from boto3.dynamodb.types import TypeDeserializer
+from pygments import highlight
+from pygments.lexers import TextLexer
+from pygments.formatters import TerminalFormatter
+from pygments.token import Token
 
 from jprint import jprint
 
@@ -62,10 +66,11 @@ def query(table, item_id, fields):
         )
         item = response.get("Item", {})
         json_item = transform_dynamodb_item_to_json(item)
-        if fields:
-            item_to_display = extract_fields(json_item, fields)
-        else:
-            item_to_display = json_item
-        jprint(item_to_display)
+        item_to_display = extract_fields(json_item, fields) if fields else json_item
+        # if fields:
+        #     item_to_display = extract_fields(json_item, fields)
+        # else:
+        #     item_to_display = json_item
+        jprint(item_to_display, sort_keys=True, indent=4)
     except ClientError as e:
         print(f"An error occurred: {e.response['Error']['Message']}")
