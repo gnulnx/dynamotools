@@ -2,6 +2,7 @@ import boto3
 import requests
 from jprint import jprint
 import click
+import os
 
 
 def login():
@@ -9,9 +10,9 @@ def login():
         "https://2lw75t7ozjernbgedxz3kx3xdy.appsync-api.us-east-1.amazonaws.com/graphql"
     )
     # AWS Cognito credentials
-    USERNAME = "john@vizit.com"
-    PASSWORD = "tga3CXZ-hmh2mqt@ypz"
-    CLIENT_ID = "1fj2tr6o8antjl9vgabn1ejrgs"
+    USERNAME = os.environ.get("COGNITO_USERNAME")
+    PASSWORD = os.environ.get("PASSWORD")
+    CLIENT_ID = os.environ.get("CLIENT_ID")
 
     # login to AWS Cognito
     client = boto3.client("cognito-idp")
