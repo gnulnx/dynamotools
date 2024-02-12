@@ -5,6 +5,7 @@ from commands import (
     list_tables,
     _login,
     uploadimages,
+    _assume_search_role,
     # update,
     # put,
 )
@@ -20,6 +21,7 @@ cli.add_command(query)
 cli.add_command(list_tables)
 cli.add_command(_login)
 cli.add_command(uploadimages)
+cli.add_command(_assume_search_role)
 # cli.add_command(update)
 # cli.add_command(put)
 

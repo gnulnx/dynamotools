@@ -32,9 +32,8 @@ def _login() -> str:
     """Login to Cognito"""
 
     id_token = login()
-    print("id_token: ", id_token)
-    print("you have veen logged into Cognito")
-
+    print(id_token)
+    print("you have been logged into Cognito")
     return id_token
 
     print("you have veen logged into Cognito")
